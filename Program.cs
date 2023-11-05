@@ -40,12 +40,12 @@
 		}
 
 		// 2
-		static ListNode DeleteDuplicates(ListNode list)
+		static ListNode DeleteDuplicates(ListNode head)
 		{
-			if (list == null)
-				return list;
+			if (head == null)
+				return head;
 
-			ListNode node = list;
+			ListNode node = head;
 			while (node.Next != null)
 			{
 				if (node.Value == node.Next.Value)
@@ -56,14 +56,14 @@
 				else
 					node = node.Next;
 			}
-			return list;
+			return head;
 		}
 
 		// 3
-		bool IsCyclic(ListNode list)
+		bool IsCyclic(ListNode head)
 		{
-			ListNode turtle = list;
-			ListNode rabbit = list;
+			ListNode turtle = head;
+			ListNode rabbit = head;
 
 			while (rabbit != null || rabbit.Next != null)
 			{
@@ -76,10 +76,10 @@
 		}
 
 		// 4
-		static ListNode ReorderList(ListNode list)
+		static ListNode ReorderList(ListNode head)
 		{
-			ListNode slow = list;
-			ListNode fast = list.Next;
+			ListNode slow = head;
+			ListNode fast = head.Next;
 
 			while (fast != null && fast.Next != null)
 			{
@@ -88,7 +88,7 @@
 			}
 
 			ListNode right = slow.Next;
-			ListNode left = list;
+			ListNode left = head;
 			slow.Next = null;
 
 			ListNode previous = null;
@@ -114,7 +114,7 @@
 				right = rightTemp;
 			}
 
-			return list;
+			return head;
 		}
 
 		// 5
@@ -128,15 +128,15 @@
 		}
 
 		//6 
-		static ListNode Double(ListNode list)
+		static ListNode Double(ListNode head)
 		{
-			ListNode currentNode = list;
+			ListNode currentNode = head;
 			ListNode previousNode = null;
 
 			if (currentNode.Value * 2 > 9)
 			{
 				previousNode = new ListNode(0, currentNode);
-				list = previousNode;
+				head = previousNode;
 			}
 
 			while (currentNode != null)
@@ -153,7 +153,7 @@
 				currentNode = currentNode.Next;
 			}
 
-			return list;
+			return head;
 		}
 	}
 }
