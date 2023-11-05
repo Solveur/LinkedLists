@@ -10,30 +10,71 @@
 			public int? Value { get; set; }
 
 			public ListNode()	{	}
-
-			public ListNode(int value)
+			public ListNode(int value, ListNode next)
 			{
 				Value = value;
+				Next = next;
+			}
+			public ListNode(int[] input)
+			{
+				Value = input[0];
+				for (int i = 1; i < input.Length; i++)
+				{
+					Append(input[i]);
+				}
 			}
 
-			public ListNode(IEnumerable<int> input)
+			public void Append(int x)
 			{
-				ListNode pointer = this;
-				foreach (var element in input)
+				var a = Last().Next = new();
+				a.Value = x;
+			}
+
+			public ListNode Last()
+			{
+				ListNode last = this;
+
+				while (last.Next != null)
 				{
-					pointer.Value = element;
-					pointer.Next = new();
-					pointer = pointer.Next;
+					last = last.Next;
 				}
+
+				return last;
+			}
+
+			public int Count()
+			{
+				ListNode ptr = this;
+				int count = 0;
+
+				while (ptr.Next != null)
+				{
+					ptr = ptr.Next;
+					count++;
+				}
+
+				return count;
+			}
+
+			public ListNode PreLast()
+			{
+				ListNode last = this;
+
+				while (last.Next.Next != null)
+				{
+					last = last.Next;
+				}
+
+				return last;
 			}
 
 			public void Print()
 			{
 				ListNode node = this;
 
-				while (node.Next != null)
+				while (node != null)
 				{
-					Console.Write($"{node.Value,-3}");
+					Console.Write($"{node.Value,3},");
 					node = node.Next;
 				}
 
