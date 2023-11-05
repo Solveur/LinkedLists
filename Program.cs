@@ -127,7 +127,7 @@
 			node.Next = node.Next?.Next;
 		}
 
-		//6 
+		// 6 
 		static ListNode Double(ListNode head)
 		{
 			ListNode currentNode = head;
@@ -155,5 +155,25 @@
 
 			return head;
 		}
+
+		// 7
+		static ListNode MergeKLists(ListNode[] lists)
+		{
+			if (lists == null || lists.Length == 0)
+			{
+				return null;
+			}
+
+			var result = lists[0];
+
+			for (var i = 1; i < lists.Length; i++)
+			{
+				result = Merge(result, lists[i]);
+			}
+
+			return result;
+		}
+
+		// 8 
 	}
 }
