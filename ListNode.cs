@@ -11,6 +11,11 @@
 
 			public ListNode()	{	}
 
+			public ListNode(int value)
+			{
+				Value = value;
+			}
+
 			public ListNode(IEnumerable<int> input)
 			{
 				ListNode pointer = this;
