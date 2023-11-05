@@ -157,7 +157,7 @@
 		}
 
 		// 7
-		static ListNode MergeKLists(ListNode[] lists)
+		static ListNode MergeK(ListNode[] lists)
 		{
 			if (lists == null || lists.Length == 0)
 			{
@@ -221,6 +221,51 @@
 			return (prev, tail);
 		}
 
+		// 9
+		static ListNode[] Split(ListNode head, int k)
+		{
+			int count = 0;
+			ListNode current = head;
+			while (current != null)
+			{
+				count++;
+				current = current.Next;
+			}
 
+			int partSize = count / k;
+			int extraNodes = count % k;
+
+			ListNode[] result = new ListNode[k];
+			current = head;
+
+			for (int i = 0; i < k; i++)
+			{
+				result[i] = current;
+
+				int currentPartSize = partSize + (extraNodes > 0 ? 1 : 0);
+
+				for (int j = 0; j < currentPartSize - 1; j++)
+				{
+					if (current != null)
+					{
+						current = current.Next;
+					}
+				}
+
+				if (extraNodes > 0)
+				{
+					extraNodes--;
+				}
+
+				if (current != null)
+				{
+					ListNode temp = current.Next;
+					current.Next = null;
+					current = temp;
+				}
+			}
+
+			return result;
+		}
 	}
 }
