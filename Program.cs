@@ -4,7 +4,7 @@
 	{
 		static void Main(string[] args)
 		{
-			ListNode list = new([1,2,3,4,5]);
+			ListNode list = new([1, 2, 3, 4, 5]);
 			Double(list).Print();
 		}
 
@@ -118,7 +118,7 @@
 		}
 
 		// 5
-		static void DeleteNode(ListNode? node)
+		static void DeleteNode(ListNode node)
 		{
 			if (node == null)
 				return;
@@ -164,7 +164,7 @@
 				return null;
 			}
 
-			var result = lists[0];
+			ListNode result = lists[0];
 
 			for (var i = 1; i < lists.Length; i++)
 			{
@@ -175,5 +175,52 @@
 		}
 
 		// 8 
+		static ListNode ReverseKGroup(ListNode head, int k)
+		{
+			ListNode dummy = new ListNode(0, head);
+			ListNode cur = head;
+			ListNode tail = dummy;
+			while (cur != null)
+			{
+				int i = k;
+				while (cur != null && i > 0)
+				{
+					cur = cur.Next;
+					i--;
+				}
+
+				if (i > 0)
+				{
+					continue;
+				}
+
+				(ListNode newHead, ListNode newTail) = reverseList(head, k);
+				tail.Next = newHead;
+				newTail.Next = cur;
+				tail = newTail;
+				head = cur;
+			}
+
+			return dummy.Next;
+		}
+
+		private static (ListNode, ListNode) reverseList(ListNode cur, int k)
+		{
+			ListNode prev = null;
+			ListNode tail = cur;
+
+			while (cur != null && k > 0)
+			{
+				ListNode next = cur.Next;
+				cur.Next = prev;
+				prev = cur;
+				cur = next;
+				k--;
+			}
+
+			return (prev, tail);
+		}
+
+
 	}
 }

@@ -6,7 +6,7 @@
 	{
 		class ListNode
 		{
-			public ListNode? Next { get; set; }
+			public ListNode Next { get; set; }
 			public int? Value { get; set; }
 
 			public ListNode()	{	}
