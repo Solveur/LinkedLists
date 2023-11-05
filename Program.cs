@@ -4,13 +4,27 @@
 	{
 		static void Main(string[] args)
 		{
-
+			ListNode list = new([1, 2, 3, 4, 5]);
+			list.Print();
+			ListNode? toDelete = list.Next;
+			DeleteNode(toDelete);
+			list.Print();
 		}
 
-		void DeleteNode(ListNode node)
+		ListNode Merge(ListNode list1, ListNode list2)
 		{
-			node.Next = node.Next.Next;
-			node.Value = node.Next.Value;
+
+			return new();
+		}
+
+		// 5
+		static void DeleteNode(ListNode? node)
+		{
+			if (node == null)
+				return;
+
+			node.Value = node.Next?.Value;
+			node.Next = node.Next?.Next;
 		}
 	}
 }
