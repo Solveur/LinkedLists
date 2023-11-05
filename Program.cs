@@ -4,14 +4,7 @@
 	{
 		static void Main(string[] args)
 		{
-			
 
-
-			ListNode list1 = new([1, 2, 3, 4, 5]);
-			ListNode list2 = new([3, 4, 5, 6, 7]);
-			list1.Print();
-			list2.Print();
-			Merge(list1, list2).Print();
 		}
 
 		// 1
@@ -43,6 +36,26 @@
 				resultPtr.Next = list2;
 
 			return resultHead.Next;
+		}
+
+		// 2
+		ListNode DeleteDuplicates(ListNode list)
+		{
+			if (list == null)
+				return list;
+
+			ListNode node = list;
+			while (node.Next != null)
+			{
+				if (node.Value == node.Next.Value)
+				{
+					ListNode ptr = node.Next;
+					node.Next = ptr.Next;
+				}
+				else
+					node = node.Next;
+			}
+			return list;
 		}
 
 		// 3
